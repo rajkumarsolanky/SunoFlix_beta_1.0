@@ -24,55 +24,60 @@
     </header>
 
     <main>
-        <div class="auth-split-container">
-            <div class="auth-side login-side">
-                <div class="auth-content fade-in">
-                    <h2><i class="fas fa-sign-in-alt"></i> Login</h2>
-                    <div id="loginLoading" class="loading-spinner hidden"></div>
-                    <form id="loginForm" class="auth-form">
-                        <div class="form-group">
-                            <label for="loginEmail">Email</label>
-                            <input type="email" id="loginEmail" name="email" required placeholder="Enter your email">
-                        </div>
-                        <div class="form-group">
-                            <label for="loginPassword">Password</label>
-                            <input type="password" id="loginPassword" name="password" required placeholder="Enter your password">
-                            <a href="#" class="forgot-link" id="showReset">Forgot Password?</a>
-                        </div>
-                        <button type="submit" class="auth-button">
-                            <i class="fas fa-sign-in-alt"></i> Login
-                        </button>
-                        <p class="auth-link">New to Sunoflix? <a href="#" id="showSignup">Sign up now</a></p>
-                    </form>
+        <div class="auth-shell">
+            <div class="auth-card">
+                <div class="auth-toggle" role="tablist" aria-label="Authentication toggle">
+                    <button type="button" class="auth-toggle-btn active" id="showLoginForm">Login</button>
+                    <button type="button" class="auth-toggle-btn" id="showSignupForm">Sign Up</button>
                 </div>
-            </div>
 
-            <div class="auth-side signup-side">
-                <div class="auth-content fade-in">
-                    <h2><i class="fas fa-user-plus"></i> Sign Up</h2>
-                    <div id="signupLoading" class="loading-spinner hidden"></div>
-                    <form id="signupForm" class="auth-form">
-                        <div class="form-group">
-                            <label for="fullName">Full Name</label>
-                            <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
-                        </div>
-                        <div class="form-group">
-                            <label for="signupEmail">Email</label>
-                            <input type="email" id="signupEmail" name="email" required placeholder="Enter your email">
-                        </div>
-                        <div class="form-group">
-                            <label for="signupPassword">Password</label>
-                            <input type="password" id="signupPassword" name="password" required placeholder="Create a password">
-                        </div>
-                        <div class="form-group">
-                            <label for="confirmPassword">Confirm Password</label>
-                            <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm your password">
-                        </div>
-                        <button type="submit" class="auth-button">
-                            <i class="fas fa-user-plus"></i> Create Account
-                        </button>
-                        <p class="auth-link">Already have an account? <a href="#" id="showLogin">Login</a></p>
-                    </form>
+                <div class="auth-panel active" id="loginPanel">
+                    <div class="auth-content fade-in">
+                        <h2><i class="fas fa-sign-in-alt"></i> Welcome Back</h2>
+                        <div id="loginLoading" class="loading-spinner hidden"></div>
+                        <form id="loginForm" class="auth-form">
+                            <div class="form-group">
+                                <label for="loginEmail">Email</label>
+                                <input type="email" id="loginEmail" name="email" required placeholder="Enter your email">
+                            </div>
+                            <div class="form-group">
+                                <label for="loginPassword">Password</label>
+                                <input type="password" id="loginPassword" name="password" required placeholder="Enter your password">
+                                <a href="#" class="forgot-link" id="showReset">Forgot Password?</a>
+                            </div>
+                            <button type="submit" class="auth-button">
+                                <i class="fas fa-sign-in-alt"></i> Login
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="auth-panel" id="signupPanel">
+                    <div class="auth-content fade-in">
+                        <h2><i class="fas fa-user-plus"></i> Create Account</h2>
+                        <div id="signupLoading" class="loading-spinner hidden"></div>
+                        <form id="signupForm" class="auth-form">
+                            <div class="form-group">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                            </div>
+                            <div class="form-group">
+                                <label for="signupEmail">Email</label>
+                                <input type="email" id="signupEmail" name="email" required placeholder="Enter your email">
+                            </div>
+                            <div class="form-group">
+                                <label for="signupPassword">Password</label>
+                                <input type="password" id="signupPassword" name="password" required placeholder="Create a password">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm your password">
+                            </div>
+                            <button type="submit" class="auth-button">
+                                <i class="fas fa-user-plus"></i> Create Account
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

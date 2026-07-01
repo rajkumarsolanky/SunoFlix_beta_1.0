@@ -25,35 +25,68 @@ function initProfilePage() {
     bindEditName();
     bindSubscriptionActions();
     bindLogout();
+    ensureProfileUIState();
 }
 
 function renderProfileHeader() {
     const user = profileState.user;
-    document.getElementById('userName').textContent = user.fullName;
+    if (!user) return;
 
-    const memberDate = new Date(user.createdAt);
-    document.getElementById('memberDate').textContent = memberDate.toLocaleString('en-US', { month: 'long', year: 'numeric' });
+    const userNameEl = document.getElementById('userName');
+    const memberDateEl = document.getElementById('memberDate');
+    const avatarEl = document.getElementById('profileAvatar');
+
+    if (userNameEl) userNameEl.textContent = user.fullName || 'User';
+
+    const createdAt = user.createdAt || new Date().toISOString();
+    const memberDate = new Date(createdAt);
+    if (memberDateEl) {
+        memberDateEl.textContent = Number.isNaN(memberDate.getTime())
+            ? 'Recently Joined'
+            : memberDate.toLocaleString('en-US', { month: 'long', year: 'numeric' });
+    }
 
     const settings = getSettings(user.email);
-    if (settings?.avatar) document.getElementById('profileAvatar').src = settings.avatar;
+    if (settings?.avatar && avatarEl) avatarEl.src = settings.avatar;
 
     const watchlist = getWatchlist(user.email);
     const reviews = getReviews(user.email);
-    document.getElementById('watchlistCount').textContent = watchlist.length;
-    document.getElementById('reviewCount').textContent = reviews.length;
-    document.getElementById('watchedCount').textContent = reviews.length; // proxy: reviewed = watched
+    const watchedCountEl = document.getElementById('watchedCount');
+    const watchlistCountEl = document.getElementById('watchlistCount');
+    const reviewCountEl = document.getElementById('reviewCount');
+
+    if (watchlistCountEl) watchlistCountEl.textContent = watchlist.length;
+    if (reviewCountEl) reviewCountEl.textContent = reviews.length;
+    if (watchedCountEl) watchedCountEl.textContent = reviews.length;
 }
 
 function bindTabs() {
     const tabs = qsa('.profile-tabs .tab-button');
+    if (!tabs.length) return;
+
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
             tabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
             qsa('.tab-content').forEach(c => c.classList.remove('active'));
-            document.getElementById(tab.dataset.tab)?.classList.add('active');
+            const target = document.getElementById(tab.dataset.tab);
+            if (target) target.classList.add('active');
         });
     });
+}
+
+function ensureProfileUIState() {
+    const activeTab = document.querySelector('.profile-tabs .tab-button.active');
+    if (!activeTab) {
+        const firstTab = document.querySelector('.profile-tabs .tab-button');
+        if (firstTab) firstTab.classList.add('active');
+    }
+
+    const activePanel = document.querySelector('.tab-content.active');
+    if (!activePanel) {
+        const firstPanel = document.querySelector('.tab-content');
+        if (firstPanel) firstPanel.classList.add('active');
+    }
 }
 
 /* ---------------- Watchlist tab ---------------- */
@@ -136,16 +169,23 @@ function initSettingsForm() {
     const user = profileState.user;
     const settings = getSettings(user.email) || { fullName: user.fullName, email: user.email, language: 'en', notifications: [], profileVisibility: false };
 
-    document.getElementById('fullName').value = settings.fullName || user.fullName;
-    document.getElementById('email').value = settings.email || user.email;
-    document.getElementById('language').value = settings.language || 'en';
+    const fullNameEl = document.getElementById('fullName');
+    const emailEl = document.getElementById('email');
+    const languageEl = document.getElementById('language');
+    const profileVisibilityEl = document.getElementById('profileVisibility');
+
+    if (fullNameEl) fullNameEl.value = settings.fullName || user.fullName;
+    if (emailEl) emailEl.value = settings.email || user.email;
+    if (languageEl) languageEl.value = settings.language || 'en';
     qsa('input[name="notifications"]').forEach(cb => { cb.checked = (settings.notifications || []).includes(cb.value); });
-    document.getElementById('profileVisibility').checked = !!settings.profileVisibility;
+    if (profileVisibilityEl) profileVisibilityEl.checked = !!settings.profileVisibility;
 
     const saveBtn = qs('.settings-actions .btn-primary');
-    saveBtn?.addEventListener('click', (e) => {
+    saveBtn?.replaceWith(saveBtn.cloneNode(true));
+    const newSaveBtn = qs('.settings-actions .btn-primary');
+    newSaveBtn?.addEventListener('click', (e) => {
         e.preventDefault();
-        const loader = saveBtn.querySelector('.button-loader');
+        const loader = newSaveBtn.querySelector('.button-loader');
         loader?.classList.remove('hidden');
 
         const fullName = document.getElementById('fullName').value.trim();
@@ -160,10 +200,14 @@ function initSettingsForm() {
 
             const users = getUsers();
             const idx = users.findIndex(u => u.email === user.email);
-            if (idx > -1) { users[idx].fullName = fullName; saveUsers(users); }
-            profileState.user = { ...user, fullName };
-            document.getElementById('userName').textContent = fullName;
+            if (idx > -1) {
+                users[idx].fullName = fullName;
+                users[idx].email = email;
+                saveUsers(users);
+            }
 
+            profileState.user = { ...user, fullName, email };
+            renderProfileHeader();
             loader?.classList.add('hidden');
             showToast('Settings save ho gayin', 'success');
         }, 500);

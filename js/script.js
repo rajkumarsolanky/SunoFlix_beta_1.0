@@ -527,13 +527,44 @@ function initContactPage() {
 function initAuthPage() {
     if (getCurrentUser()) {
         showToast('Aap pehle se logged in hain', 'info');
-        setTimeout(() => window.location.href = 'profile.html', 1000);
+        setTimeout(() => window.location.href = '../index.html', 1000);
+        return;
     }
 
     const loginForm = document.getElementById('loginForm');
     const signupForm = document.getElementById('signupForm');
     const resetForm = document.getElementById('resetForm');
     const resetModal = document.getElementById('resetModal');
+    const loginPanel = document.getElementById('loginPanel');
+    const signupPanel = document.getElementById('signupPanel');
+    const loginTab = document.getElementById('showLoginForm');
+    const signupTab = document.getElementById('showSignupForm');
+
+    function setAuthMode(mode) {
+        const isLogin = mode === 'login';
+        loginPanel?.classList.toggle('active', isLogin);
+        signupPanel?.classList.toggle('active', !isLogin);
+        loginTab?.classList.toggle('active', isLogin);
+        signupTab?.classList.toggle('active', !isLogin);
+
+        if (isLogin) {
+            document.getElementById('loginEmail')?.focus();
+        } else {
+            document.getElementById('fullName')?.focus();
+        }
+    }
+
+    loginTab?.addEventListener('click', (e) => {
+        e.preventDefault();
+        setAuthMode('login');
+    });
+
+    signupTab?.addEventListener('click', (e) => {
+        e.preventDefault();
+        setAuthMode('signup');
+    });
+
+    setAuthMode('login');
 
     loginForm?.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -545,7 +576,7 @@ function initAuthPage() {
             const result = loginUser(email, password);
             if (result.ok) {
                 showToast(`Welcome back, ${result.user.fullName}!`, 'success');
-                setTimeout(() => window.location.href = 'profile.html', 700);
+                setTimeout(() => window.location.href = '../index.html', 700);
             } else {
                 showToast(result.message, 'error');
             }
@@ -568,7 +599,7 @@ function initAuthPage() {
             const result = signupUser({ fullName, email, password });
             if (result.ok) {
                 showToast(`Account ban gaya! Welcome, ${fullName}.`, 'success');
-                setTimeout(() => window.location.href = 'profile.html', 700);
+                setTimeout(() => window.location.href = '../index.html', 700);
             } else {
                 showToast(result.message, 'error');
             }
@@ -594,17 +625,6 @@ function initAuthPage() {
         showToast(exists ? 'Reset link is email par bhej diya gaya (demo).' : 'Is email se koi account nahi mila.', exists ? 'success' : 'error');
         closeResetModal();
         resetForm.reset();
-    });
-
-    document.getElementById('showSignup')?.addEventListener('click', (e) => {
-        e.preventDefault();
-        qs('.signup-side')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        document.getElementById('fullName')?.focus();
-    });
-    document.getElementById('showLogin')?.addEventListener('click', (e) => {
-        e.preventDefault();
-        qs('.login-side')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        document.getElementById('loginEmail')?.focus();
     });
 }
 
