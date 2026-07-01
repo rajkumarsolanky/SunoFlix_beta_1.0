@@ -1781,3 +1781,142 @@ input:focus, select:focus, textarea:focus {
 .table tr:hover {
     background: rgba(255, 255, 255, 0.02);
 }
+
+/* ============================================
+   Dynamic JS Enhancements (added for JS features)
+   ============================================ */
+
+.toast { min-width: 280px; }
+.toast.toast-success { border-left: 4px solid #2ecc71; }
+.toast.toast-error { border-left: 4px solid #e74c3c; }
+.toast.toast-warning { border-left: 4px solid #f39c12; }
+.toast.toast-info { border-left: 4px solid var(--primary-color); }
+.toast i { font-size: 1.2rem; }
+.toast.toast-success i { color: #2ecc71; }
+.toast.toast-error i { color: #e74c3c; }
+.toast.toast-warning i { color: #f39c12; }
+.toast.toast-info i { color: var(--primary-color); }
+.toast-close {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    opacity: 0.7;
+}
+.toast-close:hover { opacity: 1; }
+.toast.toast-hide { animation: slideOut 0.3s ease-in forwards; }
+@keyframes slideOut {
+    to { transform: translateX(120%); opacity: 0; }
+}
+
+.form-error, .error-message {
+    display: block;
+    color: #e74c3c;
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+    min-height: 1rem;
+}
+input.input-error, textarea.input-error { border-color: #e74c3c !important; }
+
+.nav-avatar-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.movie-card { position: relative; }
+.watchlist-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.65);
+    border: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    transition: all 0.2s;
+}
+.watchlist-btn.active { background: var(--primary-color); }
+.watchlist-btn:hover { transform: scale(1.1); }
+
+.review-card {
+    background: var(--secondary-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+.review-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    gap: 1rem;
+}
+.review-card .review-rating { color: #FFD700; letter-spacing: 2px; margin-bottom: 0.5rem; }
+.review-card .review-date { color: rgba(255,255,255,0.5); font-size: 0.85rem; display: block; margin-top: 0.5rem; }
+.review-delete-btn { background: none; border: none; color: rgba(255,255,255,0.5); cursor: pointer; font-size: 1rem; }
+.review-delete-btn:hover { color: #e74c3c; }
+
+.search-suggestion-item {
+    padding: 0.7rem 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+.search-suggestion-item:hover { background: rgba(255,255,255,0.1); }
+.search-suggestion-item img { width: 32px; height: 48px; object-fit: cover; border-radius: 4px; }
+
+.cast-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+}
+.cast-card {
+    text-align: center;
+    background: var(--secondary-color);
+    border-radius: 8px;
+    padding: 1rem;
+}
+.cast-card img {
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.offline-banner {
+    background: rgba(243, 156, 18, 0.12);
+    border: 1px solid #f39c12;
+    color: #f39c12;
+    padding: 1rem 1.5rem;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.star-rating-input { display: flex; gap: 0.3rem; font-size: 1.6rem; cursor: pointer; margin: 0.5rem 0 1rem; }
+.star-rating-input i { color: rgba(255,255,255,0.3); transition: color 0.15s; }
+.star-rating-input i.filled { color: #FFD700; }
+
+.profile-meta { flex-wrap: wrap; gap: 1rem; align-items: center; }
+#logoutBtn { margin-left: auto; }
+
+@media (max-width: 768px) {
+    .auth-split-container { grid-template-columns: 1fr; }
+}
