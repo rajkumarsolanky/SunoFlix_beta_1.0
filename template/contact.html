@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Sunoflix</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo">
+            <h1>Sunoflix</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="movies.html">Movies</a></li>
+                <li><a href="browse.html">Browse</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+                <li><a href="profile.html" class="profile-link">
+                    <i class="fas fa-user"></i>
+                </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="contact-page">
+        <section class="contact-hero fade-in">
+            <h1>Contact Us</h1>
+            <p>We're here to help and answer any questions you might have</p>
+        </section>
+
+        <div class="contact-container">
+            <div class="contact-info fade-in">
+                <div class="info-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email Us</h3>
+                    <p>support@sunoflix.com</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Call Us</h3>
+                    <p>+1 (555) 123-4567</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-location-dot"></i>
+                    <h3>Visit Us</h3>
+                    <p>123 Movie Street<br>Hollywood, CA 90028</p>
+                </div>
+            </div>
+
+            <div class="contact-form fade-in">
+                <h2>Send us a Message</h2>
+                <div id="contactLoading" class="loading-spinner hidden"></div>
+                <form id="contactForm" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" required 
+                                   pattern="[A-Za-z\s]{2,}"
+                                   title="Please enter a valid name">
+                            <span class="error-message"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                            <span class="error-message"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+    
+    <script src="../js/script.js"></script>
+</body>
+</html>

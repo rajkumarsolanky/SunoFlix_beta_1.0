@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse and discover thousands of movies on SunoFlix">
+    <title>Movies - SunoFlix</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Skip link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="main-header">
+        <div class="logo">
+            <h1>SunoFlix</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="movies.html" class="active">Movies</a></li>
+                <li><a href="browse.html">Browse</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="profile.html" class="profile-link">
+                    <i class="fas fa-user"></i>
+                </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <!-- Enhanced Search Section -->
+        <section class="movies-hero" aria-label="Movie Search">
+            <div class="container">
+                <div class="search-wrapper">
+                    <div class="search-container">
+                        <label for="searchInput" class="search-input-group">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                            <input 
+                                type="text" 
+                                id="searchInput" 
+                                class="search-input" 
+                                placeholder="Search movies by title, actor, or director"
+                                aria-label="Search movies">
+                            <button class="clear-search hidden" id="clearSearch" aria-label="Clear search">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </label>
+                    </div>
+                    <div class="search-suggestions" id="searchSuggestions"></div>
+                </div>
+
+                <!-- Advanced Filters -->
+                <div class="advanced-filters">
+                    <button class="filter-toggle" aria-expanded="false" aria-controls="filterPanel">
+                        <i class="fas fa-sliders-h" aria-hidden="true"></i> Advanced Filters
+                    </button>
+                    
+                    <div id="filterPanel" class="filter-panel hidden" role="region" aria-label="Advanced Filters">
+                        <div class="filter-grid">
+                            <div class="filter-group">
+                                <label for="releaseYear">Release Year</label>
+                                <div class="year-range">
+                                    <input type="number" id="yearFrom" min="1900" max="2024" placeholder="From">
+                                    <span>-</span>
+                                    <input type="number" id="yearTo" min="1900" max="2024" placeholder="To">
+                                </div>
+                            </div>
+
+                            <div class="filter-group">
+                                <label for="rating">Minimum Rating</label>
+                                <div class="rating-slider">
+                                    <input type="range" id="rating" min="0" max="10" step="0.5" value="0">
+                                    <span class="rating-value">0+</span>
+                                </div>
+                            </div>
+
+                            <div class="filter-group">
+                                <label>Genres</label>
+                                <div class="genre-tags" id="genreTags"></div>
+                            </div>
+
+                            <div class="filter-group">
+                                <label for="language">Language</label>
+                                <select id="language" class="filter-select">
+                                    <option value="">All Languages</option>
+                                    <option value="en">English</option>
+                                    <option value="es">Spanish</option>
+                                    <option value="fr">French</option>
+                                    <option value="hi">Hindi</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="filter-actions">
+                            <button class="btn-secondary" id="resetFilters">
+                                <i class="fas fa-undo" aria-hidden="true"></i> Reset Filters
+                            </button>
+                            <button class="btn-primary" id="applyFilters">
+                                <i class="fas fa-check" aria-hidden="true"></i> Apply Filters
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Filter Tags -->
+                <div class="active-filters" id="activeFilters" aria-label="Active filters"></div>
+            </div>
+        </section>
+
+        <!-- Movie Categories -->
+        <section class="movie-categories" aria-label="Movie Categories">
+            <div class="container">
+                <div class="category-tabs" role="tablist">
+                    <button role="tab" class="tab-button active" data-category="all">
+                        All Movies
+                    </button>
+                    <button role="tab" class="tab-button" data-category="trending">
+                        Trending
+                    </button>
+                    <button role="tab" class="tab-button" data-category="new">
+                        New Releases
+                    </button>
+                    <button role="tab" class="tab-button" data-category="upcoming">
+                        Coming Soon
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Movies Grid Section -->
+        <section class="movies-grid-section" aria-label="Movie Results">
+            <div class="container">
+                <!-- Results Info and Sort -->
+                <div class="results-header">
+                    <div class="results-info">
+                        Found <span id="moviesCount" aria-live="polite">0</span> movies
+                    </div>
+                    <div class="sort-controls">
+                        <label for="sortBy">Sort by:</label>
+                        <select id="sortBy" class="sort-select">
+                            <option value="popularity.desc">Most Popular</option>
+                            <option value="vote_average.desc">Top Rated</option>
+                            <option value="release_date.desc">Latest</option>
+                            <option value="revenue.desc">Highest Grossing</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Movie Grid with Loading States -->
+                <div class="movie-grid-container">
+                    <div id="movieGrid" class="movie-grid"></div>
+                    
+                    <!-- Enhanced Loading State -->
+                    <div id="loading" class="loading-container hidden">
+                        <div class="loading-spinner"></div>
+                        <p>Loading movies...</p>
+                    </div>
+
+                    <!-- No Results State -->
+                    <div id="noResults" class="no-results hidden">
+                        <i class="fas fa-film" aria-hidden="true"></i>
+                        <h3>No Movies Found</h3>
+                        <p>Try adjusting your search filters</p>
+                        <button class="cta-button" id="resetSearch">
+                            <i class="fas fa-undo" aria-hidden="true"></i> Reset Search
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Enhanced Pagination -->
+                <div class="pagination" role="navigation" aria-label="Movie results pages">
+                    <button class="pagination-button" id="prevPage" disabled>
+                        <i class="fas fa-chevron-left" aria-hidden="true"></i> Previous
+                    </button>
+                    <div class="page-numbers" id="pageNumbers"></div>
+                    <button class="pagination-button" id="nextPage">
+                        Next <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Preview Modal -->
+        <div id="previewModal" class="modal hidden" role="dialog" aria-label="Movie preview">
+            <div class="modal-content">
+                <button class="close-modal" aria-label="Close preview">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+                <div class="preview-content">
+                    <!-- Preview content will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/movies.js" defer></script>
+</body>
+</html>

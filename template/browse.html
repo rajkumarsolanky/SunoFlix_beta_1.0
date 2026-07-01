@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse - SunoFlix</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo">
+            <h1>SunoFlix</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="movies.html">Movies</a></li>
+                <li><a href="browse.html" class="active">Browse</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="profile.html" class="profile-link">
+                    <i class="fas fa-user"></i>
+                </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="genre-section">
+            <div class="container">
+                <h2>Browse by Genre</h2>
+                <!-- Add loading state -->
+                <div id="genresLoading" class="loading-container hidden">
+                    <div class="loading-spinner"></div>
+                </div>
+                <div class="genre-grid fade-in">
+                    <!-- Genre cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section class="trending-section">
+            <div class="container">
+                <h2>Trending Now</h2>
+                <!-- Add loading state -->
+                <div id="trendingLoading" class="loading-container hidden">
+                    <div class="loading-spinner"></div>
+                </div>
+                <div class="movie-grid fade-in">
+                    <!-- Trending movies will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section class="top-rated-section">
+            <div class="container">
+                <h2>Top Rated</h2>
+                <div class="movie-grid">
+                    <!-- Top rated movies will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

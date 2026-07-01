@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication - Sunoflix</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <h1>Sunoflix</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="movies.html">Movies</a></li>
+                <li><a href="browse.html">Browse</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="profile.html" class="active profile-link">
+                    <i class="fas fa-user"></i>
+                </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="auth-split-container">
+            <div class="auth-side login-side">
+                <div class="auth-content fade-in">
+                    <h2><i class="fas fa-sign-in-alt"></i> Login</h2>
+                    <div id="loginLoading" class="loading-spinner hidden"></div>
+                    <form id="loginForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="loginEmail">Email</label>
+                            <input type="email" id="loginEmail" name="email" required placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <input type="password" id="loginPassword" name="password" required placeholder="Enter your password">
+                            <a href="#" class="forgot-link" id="showReset">Forgot Password?</a>
+                        </div>
+                        <button type="submit" class="auth-button">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </button>
+                        <p class="auth-link">New to Sunoflix? <a href="#" id="showSignup">Sign up now</a></p>
+                    </form>
+                </div>
+            </div>
+
+            <div class="auth-side signup-side">
+                <div class="auth-content fade-in">
+                    <h2><i class="fas fa-user-plus"></i> Sign Up</h2>
+                    <div id="signupLoading" class="loading-spinner hidden"></div>
+                    <form id="signupForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="signupEmail">Email</label>
+                            <input type="email" id="signupEmail" name="email" required placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="signupPassword">Password</label>
+                            <input type="password" id="signupPassword" name="password" required placeholder="Create a password">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm your password">
+                        </div>
+                        <button type="submit" class="auth-button">
+                            <i class="fas fa-user-plus"></i> Create Account
+                        </button>
+                        <p class="auth-link">Already have an account? <a href="#" id="showLogin">Login</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reset Password Modal with opacity and visibility -->
+        <div id="resetModal" class="modal hidden fade-out">
+            <div class="modal-content">
+                <span class="close-modal" id="closeResetModal">&times;</span>
+                <h2><i class="fas fa-key"></i> Reset Password</h2>
+                <form id="resetForm" class="auth-form">
+                    <p class="reset-info">Enter your email to receive reset instructions</p>
+                    <div class="form-group">
+                        <label for="resetEmail">Email</label>
+                        <input type="email" id="resetEmail" name="email" required placeholder="Enter your email">
+                    </div>
+                    <div class="button-group">
+                        <button type="submit" class="auth-button">
+                            <i class="fas fa-paper-plane"></i> Send Reset Link
+                        </button>
+                        <button type="button" class="auth-button secondary" id="cancelReset">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

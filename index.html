@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SunoFlix - Your premier destination for unlimited movies and TV shows. Stream anytime, anywhere.">
+    <meta name="keywords" content="movies, streaming, tv shows, films, entertainment, watch online">
+    <meta name="author" content="SunoFlix">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="SunoFlix - Your Movie Destination">
+    <meta property="og:description" content="Stream unlimited movies and TV shows anytime, anywhere.">
+    <meta property="og:image" content="images/sunoflix-social.jpg">
+    <meta property="og:url" content="https://sunoflix.com">
+    
+    <title>SunoFlix - Stream Unlimited Movies & TV Shows</title>
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="css/styles.css" as="style">
+    <link rel="preload" href="images/hero-bg.jpg" as="image">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="main-header">
+        <div class="logo">
+            <h1>Sunoflix</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="template/movies.html">Movies</a></li>
+                <li><a href="template/browse.html">Browse</a></li>
+                <li><a href="template/contact.html">Contact</a></li>
+                <li><a href="template/profile.html" class="profile-link">
+                    <i class="fas fa-user"></i>
+                </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <!-- Enhanced Hero Section -->
+        <section class="hero" aria-label="Welcome Banner">
+            <div class="hero-content fade-in">
+                <h1 class="sr-only">Welcome to SunoFlix</h1>
+                <h2>Unlimited Movies & TV Shows</h2>
+                <p>Watch anywhere. Stream anytime.</p>
+                <div class="hero-actions">
+                    <a href="template/movies.html" class="cta-button" role="button">
+                        <i class="fas fa-play" aria-hidden="true"></i> Start Watching
+                    </a>
+                    <a href="template/browse.html" class="cta-button secondary" role="button">
+                        <i class="fas fa-compass" aria-hidden="true"></i> Browse
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Categories Section -->
+        <section class="categories" aria-label="Movie Categories">
+            <div class="category-tabs">
+                <button class="tab-button active" data-category="trending">
+                    <i class="fas fa-fire" aria-hidden="true"></i> Trending
+                </button>
+                <button class="tab-button" data-category="new">
+                    <i class="fas fa-calendar" aria-hidden="true"></i> New Arrivals
+                </button>
+                <button class="tab-button" data-category="top">
+                    <i class="fas fa-star" aria-hidden="true"></i> Top Rated
+                </button>
+            </div>
+            <div class="category-content active" id="trending-content">
+                <!-- Content loaded via JavaScript -->
+            </div>
+        </section>
+
+        <!-- Enhanced Featured Section -->
+        <section class="featured" aria-label="Featured Movies">
+            <div class="section-header">
+                <h2><i class="fas fa-star" aria-hidden="true"></i> Featured Movies</h2>
+                <div class="header-actions">
+                    <div class="carousel-progress">
+                        <div class="progress-bar"></div>
+                    </div>
+                    <a href="template/movies.html" class="view-all">View All</a>
+                </div>
+            </div>
+            <div class="carousel-wrapper">
+                <div class="carousel">
+                    <!-- Movie cards will be inserted here by JavaScript -->
+                </div>
+                <button class="carousel-button prev" aria-label="Previous">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-button next" aria-label="Next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Enhanced Latest Releases -->
+        <section class="latest" aria-label="Latest Releases">
+            <div id="latestLoading" class="loading-container hidden">
+                <div class="loading-spinner"></div>
+            </div>
+            <div class="section-header">
+                <h2><i class="fas fa-film"></i> Latest Releases</h2>
+                <a href="template/movies.html?filter=latest" class="view-all">View All</a>
+            </div>
+            <div class="movie-grid">
+                <!-- Movie cards -->
+            </div>
+        </section>
+
+        <!-- Enhanced Genres Section -->
+        <section class="genres" aria-label="Popular Genres">
+            <div class="section-header">
+                <h2><i class="fas fa-tags"></i> Popular Genres</h2>
+            </div>
+            <div class="genre-grid">
+                <div class="genre-card" data-genre="action">
+                    <i class="fas fa-fire"></i>
+                    <span>Action</span>
+                    <span class="genre-count">2.5K Movies</span>
+                </div>
+                <div class="genre-card" data-genre="comedy">
+                    <i class="fas fa-laugh"></i>
+                    <span>Comedy</span>
+                    <span class="genre-count">1.8K Movies</span>
+                </div>
+                <div class="genre-card" data-genre="drama">
+                    <i class="fas fa-theater-masks"></i>
+                    <span>Drama</span>
+                    <span class="genre-count">3.2K Movies</span>
+                </div>
+                <div class="genre-card" data-genre="horror">
+                    <i class="fas fa-ghost"></i>
+                    <span>Horror</span>
+                    <span class="genre-count">1.2K Movies</span>
+                </div>
+                <div class="genre-card" data-genre="scifi">
+                    <i class="fas fa-robot"></i>
+                    <span>Sci-Fi</span>
+                    <span class="genre-count">980 Movies</span>
+                </div>
+                <div class="genre-card" data-genre="romance">
+                    <i class="fas fa-heart"></i>
+                    <span>Romance</span>
+                    <span class="genre-count">1.5K Movies</span>
+                </div>
+                <div class="genre-card" data-genre="thriller">
+                    <i class="fas fa-mask"></i>
+                    <span>Thriller</span>
+                    <span class="genre-count">1.7K Movies</span>
+                </div>
+                <div class="genre-card" data-genre="animation">
+                    <i class="fas fa-child"></i>
+                    <span>Animation</span>
+                    <span class="genre-count">950 Movies</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Newsletter Section -->
+        <section class="newsletter" aria-label="Newsletter Signup">
+            <div class="newsletter-content">
+                <h2>Stay Updated</h2>
+                <p>Get notified about new releases and special offers</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <div class="form-group">
+                        <input type="email" id="newsletterEmail" 
+                               placeholder="Enter your email" 
+                               required
+                               aria-label="Email for newsletter">
+                        <button type="submit" class="cta-button">
+                            <i class="fas fa-paper-plane" aria-hidden="true"></i> Subscribe
+                        </button>
+                    </div>
+                    <div class="form-feedback hidden"></div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- New Footer Section -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About SunoFlix</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section social">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SunoFlix. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Cookie Consent -->
+    <div id="cookieConsent" class="cookie-consent hidden">
+        <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</p>
+        <div class="cookie-buttons">
+            <button id="acceptCookies" class="cta-button">Accept</button>
+            <button id="cookieSettings" class="cta-button secondary">Cookie Settings</button>
+        </div>
+    </div>
+
+    <!-- Error State Template -->
+    <template id="errorState">
+        <div class="error-container">
+            <i class="fas fa-exclamation-circle"></i>
+            <h3>Oops! Something went wrong</h3>
+            <p>Please try again later or refresh the page</p>
+            <button class="cta-button" onclick="window.location.reload()">Refresh Page</button>
+        </div>
+    </template>
+
+    <!-- Scripts -->
+    <script src="js/script.js" defer></script>
+</body>
+</html>
